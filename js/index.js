@@ -4,16 +4,26 @@ const loadAllData = () =>{
     fetch(url)
     .then(res => res.json())
     .then(data => displayAllData(data.data))
+    toggleSpinner(true)
 }
 
 
 // display all data 
-const displayAllData = tools =>{
+const displayAllData = (tools) =>{
+    let allTools = tools.tools;
+    globalData = allTools.slice(7, 12)
+    const loadMoreBtn = document.getElementById('load-more-btn')
+    if( allTools.length > 6){
+        allTools = allTools.slice(0, 6)
+        loadMoreBtn.classList.remove('hidden')
+    }
+    else{
+        loadMoreBtn.classList.add('hidden')    
+    }
     const cardContainer = document.getElementById('card-container')
-    tools.tools.forEach(tool => {
+    allTools.forEach(tool => {
         const {name, image, published_in, features, id} = tool;
-        // console.log(name,image, published_in, features);
-     
+        // console.log(name,image, published_in, features); 
     cardContainer.innerHTML += `
     <div class="mb-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
@@ -22,7 +32,7 @@ const displayAllData = tools =>{
     <div class="p-5">
             <div class="border-b-2 pb-4 border-black">
                 <h5 class="mb-2 text-1xl font-bold tracking-tight text-gray-900 dark:text-white">Features</h5>
-                <ol id="list-container" class="pl-5 mt-2 space-y-1 list-decimal ">
+                <ol id="main-list-container" class="pl-5 mt-2 space-y-1 list-decimal ">
                     <li>You might feel like  o</li>
                     <li>Nested navigation in UIs is a ble.</li>
                     <li>Nesting tons of t helpful.</li>
@@ -42,8 +52,11 @@ const displayAllData = tools =>{
     </div>
 </div>
     `;
- 
-   });
+    // showAllListItem(features)
+    // console.log(tools.tools[0].features)
+});
+// showAllListItem(tools.tools.features);
+toggleSpinner(false)
 }
 
 
@@ -89,12 +102,14 @@ const showSingleData = data =>{
         2: { feature_name: featureName2, description: description2 },
         3: { feature_name: featureName3, description: description3 }
       } = data.features;
+
       const features = [featureName1, featureName2, featureName3];
       features.forEach(feature => {
         featureListContainer.innerHTML += `
         <li>${feature? feature : 'No data found'}</li>
         `;          
       });
+
 
 
     //   intregration section 
@@ -104,6 +119,37 @@ const showSingleData = data =>{
         `;
     });
 
+    // const mainListContainer = document.getElementById('main-list-container')
+    // console.log(mainListContainer)
+}
+
+
+// show all list item 
+
+ 
+// const showAllListItem = (features) =>{
+//     const mainListContainer = document.getElementById('main-list-container')
+//     features.forEach(feature => {
+//         mainListContainer.innerHTML += `
+//         <li>${feature? feature : 'No data found'}</li>
+//         `;    
+//         console.log(feature)      
+//     });
+//     console.log( features)
+    // console.log(mainListContainer)
+// }
+
+// showAllListItem();
+
+const toggleSpinner = isLoading =>{
+    const spinneToggleBtn = document.getElementById('spinne-toggle-btn')
+    if(isLoading === true){
+        spinneToggleBtn.classList.remove('hidden')
+    }
+    else{
+        spinneToggleBtn.classList.add('hidden')
+
+    }
 }
 
 
