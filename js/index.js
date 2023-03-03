@@ -1,29 +1,58 @@
-let globalData;
-const loadAllData = () =>{
+let globalData
+const loadAllData = async() =>{
     const url = `https://openapi.programming-hero.com/api/ai/tools`
-    fetch(url)
-    .then(res => res.json())
-    .then(data => displayAllData(data.data))
+    try{
+    const res = await fetch(url)
+    const data = await res.json()
+    displayAllData(data.data.tools.slice(0, 6))
+
     toggleSpinner(true)
+    // fetch all data by clicking load more button 
+    document.getElementById('load-more-btn').addEventListener('click', function(){
+        document.getElementById('card-container').innerHTML = ''
+        displayAllData(data.data.tools)
+        
+    })
+
+    // sort by date 
+
+    document.getElementById('sort-by-date').addEventListener('click', function(){
+        const dates = []
+            data.data.tools.forEach( date =>{
+                dates.push(date.published_in)
+            // console.log(element.published_in.sort())
+        })
+        console.log(dates.sort())
+        console.log(dates)
+    })
+    
+
+}
+catch(error){
+    console.log(error)
+}
+toggleSpinner(false) 
+    
 }
 
 
 // display all data 
 const displayAllData = (tools) =>{
-    let allTools = tools.tools;
+    // let allTools = tools.tools;
     const loadMoreBtn = document.getElementById('load-more-btn')
-    if( allTools.length > 6){
-        allTools = allTools.slice(0, 6)
+    if( tools.length >= 6){
         loadMoreBtn.classList.remove('hidden')
+
+        toggleSpinner(true) 
     }
     else{
-        loadMoreBtn.classList.add('hidden')    
+        loadMoreBtn.classList.add('hidden')   
+        
     }
     const cardContainer = document.getElementById('card-container')
-    allTools.forEach(tool => {
+    tools.forEach(tool => {
         const {name, image, published_in, features, id} = tool;
         const [feature1, feature2, feature3, feature4] = features
-        console.log(); 
     cardContainer.innerHTML += `
     <div class="mb-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
@@ -52,11 +81,11 @@ const displayAllData = (tools) =>{
     </div>
 </div>
     `;
-    
+    toggleSpinner(false) 
     
 });
 
-toggleSpinner(false)
+
 }
 
 
@@ -66,8 +95,8 @@ const singleDataLoad = toolId =>{
     fetch(url)
     .then(res => res.json())
     .then(data => showSingleData(data.data))
-    globalData = data.data;
     // console.log(toolId)
+    toggleSpinner(true) 
 }
 
 // show signgle data on modal 
@@ -92,6 +121,7 @@ const showSingleData = data =>{
     plane3Element.innerText = ` ${enterprise.price? enterprise.price : 'Free of cost'}`
     const modalImage = document.getElementById('modal-image')
     modalImage.src = `${data.image_link[0]? data.image_link[0] : ''}`
+    console.log(data)
     
 
 
@@ -117,6 +147,7 @@ const showSingleData = data =>{
         <li>${intregetaion? intregetaion : 'No data found'}</li>
         `;
     });
+    toggleSpinner(false) 
 
     // const mainListContainer = document.getElementById('main-list-container')
     // console.log(mainListContainer)
@@ -124,7 +155,6 @@ const showSingleData = data =>{
 
 
 // show all list item 
-
 
 
 
@@ -140,6 +170,12 @@ const toggleSpinner = isLoading =>{
 
     }
 }
+
+
+// load more blogs 
+document.getElementById('load-more-btn').addEventListener('click', function(){
+    
+})
 
 
 loadAllData();
