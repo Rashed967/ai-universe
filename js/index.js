@@ -11,7 +11,7 @@ const loadAllData = () =>{
 const displayAllData = tools =>{
     const cardContainer = document.getElementById('card-container')
     tools.tools.forEach(tool => {
-        const {name, image, published_in, features} = tool;
+        const {name, image, published_in, features, id} = tool;
         // console.log(name,image, published_in, features);
      
     cardContainer.innerHTML += `
@@ -36,7 +36,7 @@ const displayAllData = tools =>{
             </div>
             <div>
                 
-                <label for="my-modal-5" class="btn"><i class="fa-solid fa-arrow-right"></i></label>
+                <label onclick="singleDataLoad('${id}')" for="my-modal-5" class="btn"><i class="fa-solid fa-arrow-right"></i></label>
             </div>
            </div>  
     </div>
@@ -47,6 +47,32 @@ const displayAllData = tools =>{
 }
 
 
+// single data load 
+const singleDataLoad = toolId =>{
+    const url = `https://openapi.programming-hero.com/api/ai/tool/${toolId}`
+    fetch(url)
+    .then(res => res.json())
+    .then(data => showSingleData(data.data))
+    // console.log(toolId)
+}
+
+// show signgle data on modal 
+const showSingleData = data =>{
+    const {description, logo, } = data;
+    const {score} = data.accuracy;
+    const modalDescription = document.getElementById('modal-description')
+    modalDescription.innerText = `${description? description : ''}`
+    const scoreElement = document.getElementById('score')
+    scoreElement.innerText = `${score? score : ''}`
+    const [plane1, plane2, plane3] = data.pricing;
+    // const [price1, price2, price3] = plane1
+    const{price} = plane1
+    const plane1Element = document.getElementById('plane1')
+    plane1Element.innerText = ` ${price? price : 'Free of cost'}`
+    // const plane2Element = document.getElementById('plane2')
+    // plane2Element.innerText = ` ${price? price : 'Free of cost'}`
+    console.log(plane1Element)
+}
 
 
 loadAllData();
