@@ -11,7 +11,6 @@ const loadAllData = () =>{
 // display all data 
 const displayAllData = (tools) =>{
     let allTools = tools.tools;
-    globalData = allTools.slice(7, 12)
     const loadMoreBtn = document.getElementById('load-more-btn')
     if( allTools.length > 6){
         allTools = allTools.slice(0, 6)
@@ -23,7 +22,8 @@ const displayAllData = (tools) =>{
     const cardContainer = document.getElementById('card-container')
     allTools.forEach(tool => {
         const {name, image, published_in, features, id} = tool;
-        // console.log(name,image, published_in, features); 
+        const [feature1, feature2, feature3, feature4] = features
+        console.log(); 
     cardContainer.innerHTML += `
     <div class="mb-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
@@ -33,9 +33,9 @@ const displayAllData = (tools) =>{
             <div class="border-b-2 pb-4 border-black">
                 <h5 class="mb-2 text-1xl font-bold tracking-tight text-gray-900 dark:text-white">Features</h5>
                 <ol id="main-list-container" class="pl-5 mt-2 space-y-1 list-decimal ">
-                    <li>You might feel like  o</li>
-                    <li>Nested navigation in UIs is a ble.</li>
-                    <li>Nesting tons of t helpful.</li>
+                    <li>${feature1}</li>
+                    <li>${feature2}</li>
+                    <li>${feature3}</li>
                 </ol>
             </div>
             
@@ -52,10 +52,10 @@ const displayAllData = (tools) =>{
     </div>
 </div>
     `;
-    // showAllListItem(features)
-    // console.log(tools.tools[0].features)
+    
+    
 });
-// showAllListItem(tools.tools.features);
+
 toggleSpinner(false)
 }
 
@@ -66,6 +66,7 @@ const singleDataLoad = toolId =>{
     fetch(url)
     .then(res => res.json())
     .then(data => showSingleData(data.data))
+    globalData = data.data;
     // console.log(toolId)
 }
 
@@ -110,8 +111,6 @@ const showSingleData = data =>{
         `;          
       });
 
-
-
     //   intregration section 
     data.integrations.forEach(intregetaion => {
         integrateListContainer.innerHTML += `
@@ -126,18 +125,8 @@ const showSingleData = data =>{
 
 // show all list item 
 
- 
-// const showAllListItem = (features) =>{
-//     const mainListContainer = document.getElementById('main-list-container')
-//     features.forEach(feature => {
-//         mainListContainer.innerHTML += `
-//         <li>${feature? feature : 'No data found'}</li>
-//         `;    
-//         console.log(feature)      
-//     });
-//     console.log( features)
-    // console.log(mainListContainer)
-// }
+
+
 
 // showAllListItem();
 
