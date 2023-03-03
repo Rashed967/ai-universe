@@ -1,0 +1,27 @@
+.price-div-container{
+    display: flex;
+    justify-content: space-around;
+    gap: 7px;
+    margin: 0 7px;
+}
+.price-div{
+    padding: 12px 10px;
+    text-align: center;
+    font-weight: 500;
+    
+    /* width: 70px; */
+    border-radius: 7px;
+    background-color: antiquewhite;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+}
+
+/* .card{
+    width: 350px;
+} */
+
+/* .modal{
+    width: 900px;
+    margin: 0 auto;
+} */

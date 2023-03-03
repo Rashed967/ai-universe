@@ -35,7 +35,7 @@ const displayAllData = tools =>{
                 <p class="mb-3 font-semibold text-gray-700 dark:text-gray-400"><i class="fa-solid fa-calendar-days"></i> <span>${published_in}</span> </p>
             </div>
             <div>
-                <button><i class="fa-solid fa-arrow-right"></i></button>
+                <button type="button"><i class="fa-solid fa-arrow-right"></i></button>
             </div>
            </div>  
     </div>

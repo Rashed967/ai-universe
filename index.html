@@ -7,16 +7,15 @@
     <title>Ai universe</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/29a1466319.js" crossorigin="anonymous"></script>
-
-
+    <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
 
-    <header class="container mx-auto">
+    <header class=" container mx-auto">
         <h2 class="text-center text-2xl my-6 font-bold">AI Universe Hub</h2>
         <!-- sort button div  -->
         <div class=" flex justify-center">
-            <button type="button" class=" focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900">Sort By Date</button>
+            <button data-modal-target="staticModal" data-modal-toggle="staticModal" type="button" class=" focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900">Sort By Date</button>
         </div>
 
     </header>
@@ -36,7 +35,105 @@
                 <button type="button" class=" focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900">See More</button>
             </div>
         </section>
+
+        <!-- modal section start  -->
+        
+<section>
+
+
+<!-- Modal toggle -->
+<button data-modal-target="staticModal" data-modal-toggle="staticModal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+    Toggle modal
+  </button>
+  
+  <!-- Main modal -->
+  <div id="staticModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+    <div class="relative w-full h-full max-w-2xl md:max-w-3xl md:h-auto">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+
+              <!-- Modal body -->
+              <div class="p-4 justify-center md:space-x-4 space-y-4 md:space-y-0 grid  md:grid-cols-2">
+                  
+<div class="card max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="p-4">
+        <p>
+            ChatGPT is an AI-powered chatbot platform that uses OpenAI's GPT technology to simulate human conversation.
+        </p>
+    </div>
+
+    <!-- pricing div  -->
+    <div class="price-div-container ">
+        <div class="price-div"><h4>Free of cost</h4></div>
+        <div class="price-div"><h4>Free of cost</h4></div>
+        <div class="price-div"><h4>Free of cost</h4></div>
+    </div>
+
+    <div class="p-5 flex">
+        
+        <div class=" pb-4 border-black">
+            <h5 class="mb-2 text-1xl font-bold tracking-tight text-gray-900 dark:text-white">Features</h5>
+            <ol id="list-container" class="pl-5 mt-2 space-y-1 list-decimal ">
+                <li>You might feel</li>
+                <li>Nested navigation inle.</li>
+                <li>Nesting tons of.</li>
+            </ol>
+        </div>
+        <div class=" pb-4 border-black">
+            <h5 class="mb-2 text-1xl font-bold tracking-tight text-gray-900 dark:text-white">Integrations</h5>
+            <ol id="list-container" class="pl-5 mt-2 space-y-1 list-decimal ">
+                <li>You might feel like  o</li>
+                <li>Nested navigation in UIs is a ble.</li>
+                <li>Nesting tons of t helpful.</li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="card max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="relative">
+        
+        <img class=" rounded-t-lg" src="./images/image.jpg" alt="" />
+
+        <div id="toast-success" class="absolute top-2 right-2 flex items-center w-4/6  p-4 mb-4 text-white bg-red-600 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+            <div class="ml-3 text-sm font-normal">94% accuracy.</div>
+
+        </div>
+        
+    </div>
+   
+    <div class="p-5">
+            <h5 class="text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+        <p class="text-center mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+
+    </div>
+</div>
+
+              </div>
+
+
+              <!-- Modal footer -->
+              <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                  <button data-modal-hide="staticModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Close</button>
+
+              </div>
+          </div>
+      </div>
+  </div>
+  
+  
+
+
+</section>
+
+
+
     </main>
+
+    
    
       
 
