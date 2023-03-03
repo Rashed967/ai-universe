@@ -58,20 +58,52 @@ const singleDataLoad = toolId =>{
 
 // show signgle data on modal 
 const showSingleData = data =>{
+    const featureListContainer = document.getElementById('feature-list-container')
+    featureListContainer.innerHTML = ''
+    const integrateListContainer = document.getElementById('integrate-list-container')
+    integrateListContainer.innerHTML = ''
     const {description, logo, } = data;
     const {score} = data.accuracy;
     const modalDescription = document.getElementById('modal-description')
     modalDescription.innerText = `${description? description : ''}`
     const scoreElement = document.getElementById('score')
     scoreElement.innerText = `${score? score : ''}`
-    const [plane1, plane2, plane3] = data.pricing;
-    // const [price1, price2, price3] = plane1
-    const{price} = plane1
+    const [basic, pro, enterprise] = data.pricing;
+    const [image] = data.image_link[0]
     const plane1Element = document.getElementById('plane1')
-    plane1Element.innerText = ` ${price? price : 'Free of cost'}`
-    // const plane2Element = document.getElementById('plane2')
-    // plane2Element.innerText = ` ${price? price : 'Free of cost'}`
-    console.log(plane1Element)
+    plane1Element.innerText = ` ${basic.price? basic.price : 'Free of cost'}`
+    const plane2Element = document.getElementById('plane2')
+    plane2Element.innerText = ` ${pro.price? pro.price : 'Free of cost'}`
+    const plane3Element = document.getElementById('plane3')
+    plane3Element.innerText = ` ${enterprise.price? enterprise.price : 'Free of cost'}`
+    const modalImage = document.getElementById('modal-image')
+    modalImage.src = `${data.image_link[0]? data.image_link[0] : ''}`
+    
+
+
+    // feature destructuring 
+    
+    
+    const { 
+        1: { feature_name: featureName1, description: description1 },
+        2: { feature_name: featureName2, description: description2 },
+        3: { feature_name: featureName3, description: description3 }
+      } = data.features;
+      const features = [featureName1, featureName2, featureName3];
+      features.forEach(feature => {
+        featureListContainer.innerHTML += `
+        <li>${feature? feature : 'No data found'}</li>
+        `;          
+      });
+
+
+    //   intregration section 
+    data.integrations.forEach(intregetaion => {
+        integrateListContainer.innerHTML += `
+        <li>${intregetaion? intregetaion : 'No data found'}</li>
+        `;
+    });
+
 }
 
 
