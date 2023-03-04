@@ -17,15 +17,15 @@ const loadAllData = async() =>{
     // sort by date 
 
     document.getElementById('sort-by-date').addEventListener('click', function(){
-        const dates = []
-            data.data.tools.forEach( date =>{
-                dates.push(date.published_in)
-            // console.log(element.published_in.sort())
-        })
+        
+        const sortedTools = allTools.sort((a, b) => {
+            const dateA = new Date(a.published_in);
+            const dateB = new Date(b.published_in);
+            return dateA - dateB;
+          });
   
     })
     
-
 }
 catch(error){
     console.log(error)
@@ -54,9 +54,9 @@ const displayAllData = (tools) =>{
         const [feature1, feature2, feature3, feature4] = features
     cardContainer.innerHTML += `
     <div class="mb-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <a href="#">
+
         <img class="rounded-t-lg" src="${image}" alt="" />
-    </a>
+
     <div class="p-5">
             <div class="border-b-2 pb-4 border-black">
                 <h5 class="mb-2 text-1xl font-bold tracking-tight text-gray-900 dark:text-white">Features</h5>
@@ -108,7 +108,8 @@ const showSingleData = data =>{
     const modalDescription = document.getElementById('modal-description')
     modalDescription.innerText = `${description? description : ''}`
     const scoreElement = document.getElementById('score')
-    scoreElement.innerText = `${score? score : ''}`
+    const totalSoce = score * 100;
+    scoreElement.innerText = `${score ? totalSoce : ''}`
     const [basic, pro, enterprise] = data.pricing;
     const [image] = data.image_link[0]
     const plane1Element = document.getElementById('plane1')
@@ -169,6 +170,7 @@ const toggleSpinner = isLoading =>{
 
     }
 }
+
 
 
 
