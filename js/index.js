@@ -16,15 +16,14 @@ const loadAllData = async() =>{
 
     // sort by date 
 
-    document.getElementById('sort-by-date').addEventListener('click', function(){
+    // document.getElementById('sort-by-date').addEventListener('click', function(){
         
-        const sortedTools = allTools.sort((a, b) => {
-            const dateA = new Date(a.published_in);
-            const dateB = new Date(b.published_in);
-            return dateA - dateB;
-          });
-  
-    })
+    //     const sortedTools = allTools.sort((a, b) => {
+    //         const dateA = new Date(a.published_in);
+    //         const dateB = new Date(b.published_in);
+    //         return dateA - dateB;
+    //       });
+    // })
     
 }
 catch(error){
@@ -153,8 +152,7 @@ const showSingleData = data =>{
     const [example1] = values;
     document.getElementById('example-input').innerText = `${example1.input}`
     document.getElementById('example-output').innerText = `${example1.output}`
-    console.log(example1)
-    // console.log(data.input_output_examples[0])
+
 }
 
 
