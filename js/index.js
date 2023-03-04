@@ -22,8 +22,7 @@ const loadAllData = async() =>{
                 dates.push(date.published_in)
             // console.log(element.published_in.sort())
         })
-        console.log(dates.sort())
-        console.log(dates)
+  
     })
     
 
@@ -95,7 +94,6 @@ const singleDataLoad = toolId =>{
     fetch(url)
     .then(res => res.json())
     .then(data => showSingleData(data.data))
-    // console.log(toolId)
     toggleSpinner(true) 
 }
 
@@ -121,12 +119,11 @@ const showSingleData = data =>{
     plane3Element.innerText = ` ${enterprise.price? enterprise.price : 'Free of cost'}`
     const modalImage = document.getElementById('modal-image')
     modalImage.src = `${data.image_link[0]? data.image_link[0] : ''}`
-    console.log(data)
+
     
 
 
     // feature destructuring 
-    
     
     const { 
         1: { feature_name: featureName1, description: description1 },
@@ -149,16 +146,18 @@ const showSingleData = data =>{
     });
     toggleSpinner(false) 
 
-    // const mainListContainer = document.getElementById('main-list-container')
-    // console.log(mainListContainer)
+
+    // show example section 
+    const values = Object.values(data.input_output_examples)
+    const [example1] = values;
+    document.getElementById('example-input').innerText = `${example1.input}`
+    document.getElementById('example-output').innerText = `${example1.output}`
+    console.log(example1)
+    // console.log(data.input_output_examples[0])
 }
 
 
-// show all list item 
-
-
-
-// showAllListItem();
+// toggole spinner 
 
 const toggleSpinner = isLoading =>{
     const spinneToggleBtn = document.getElementById('spinne-toggle-btn')
@@ -172,10 +171,6 @@ const toggleSpinner = isLoading =>{
 }
 
 
-// load more blogs 
-document.getElementById('load-more-btn').addEventListener('click', function(){
-    
-})
 
 
 loadAllData();
